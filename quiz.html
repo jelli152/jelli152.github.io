@@ -75,28 +75,43 @@
     function gradeQuiz() {
       let score = 0;
       let total = 5;
+      let feedback = "<h2>Your Quiz Results:</h2><ul>";
 
-      // Q1-Q3 Multiple choice
       for (let i = 1; i <= 3; i++) {
         const radios = document.getElementsByName("q" + i);
-        radios.forEach(r => { if (r.checked && r.value === "1") score++; });
+        radios.forEach(r => {
+          if (r.checked && r.value === "1") {
+            score++;
+            feedback += `<li>Question ${i}: Correct (Your answer: ${r.nextSibling.textContent.trim()})</li>`;
+          } else if (r.checked && r.value === "0") {
+            feedback += `<li>Question ${i}: Incorrect (Your answer: ${r.nextSibling.textContent.trim()})</li>`;
+          }
+        });
       }
 
-      // Q4 Fill in the blank
       const q4 = document.querySelector("input[name='q4']").value.trim().toLowerCase();
-      if (q4 === "hypertext markup language") score++;
+      if (q4 === "hypertext markup language") {
+        score++;
+        feedback += "<li>Question 4: Correct (Your answer: HyperText Markup Language)</li>";
+      } else {
+        feedback += `<li>Question 4: Incorrect (Your answer: ${q4 || "None"})</li>`;
+      }
 
-      // Q5 Multi-select
       const q5Correct = ["structuring", "multimedia", "links"];
       const q5Checks = document.querySelectorAll("input[name='q5']:checked");
       const selected = Array.from(q5Checks).map(cb => cb.value);
       if (selected.length === q5Correct.length && selected.every(val => q5Correct.includes(val))) {
         score++;
+        feedback += "<li>Question 5: Correct (You selected all valid HTML roles)</li>";
+      } else {
+        feedback += "<li>Question 5: Incorrect (Some choices were invalid or missing)</li>";
       }
 
-      // Results
+      feedback += `</ul><p>Total Score: ${score} / ${total}</p>`;
       const pass = score >= 4;
-      document.getElementById("results").innerHTML = `You scored ${score}/${total}.<br>${pass ? "✅ You passed!" : "❌ You did not pass."}`;
+      feedback += `<p>${pass ? "✅ You passed!" : "❌ You did not pass."}</p>`;
+
+      document.getElementById("results").innerHTML = feedback;
     }
   </script>
 
