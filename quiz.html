@@ -8,6 +8,8 @@
   <style>
     .question { margin-bottom: 20px; }
     .result { margin-top: 20px; font-weight: bold; }
+    .correct { color: green; }
+    .incorrect { color: red; }
   </style>
 </head>
 <body>
@@ -91,30 +93,30 @@
         if (selected) {
           if (selected.value === correctAnswers[questionName]) {
             score++;
-            feedback += `<li>Question ${i}: Correct (Your answer: ${selected.value})</li>`;
+            feedback += `<li class='correct'>Question ${i}: Correct (Your answer: ${selected.value})</li>`;
           } else {
-            feedback += `<li>Question ${i}: Incorrect (Your answer: ${selected.value}, Correct answer: ${correctAnswers[questionName]})</li>`;
+            feedback += `<li class='incorrect'>Question ${i}: Incorrect (Your answer: ${selected.value}, Correct answer: ${correctAnswers[questionName]})</li>`;
           }
         } else {
-          feedback += `<li>Question ${i}: No answer selected (Correct answer: ${correctAnswers[questionName]})</li>`;
+          feedback += `<li class='incorrect'>Question ${i}: No answer selected (Correct answer: ${correctAnswers[questionName]})</li>`;
         }
       }
 
       const q4 = document.querySelector("input[name='q4']").value.trim().toLowerCase();
       if (q4 === correctAnswers.q4) {
         score++;
-        feedback += "<li>Question 4: Correct (Your answer: HyperText Markup Language)</li>";
+        feedback += "<li class='correct'>Question 4: Correct (Your answer: HyperText Markup Language)</li>";
       } else {
-        feedback += `<li>Question 4: Incorrect (Your answer: ${q4 || "None"}, Correct answer: HyperText Markup Language)</li>`;
+        feedback += `<li class='incorrect'>Question 4: Incorrect (Your answer: ${q4 || "None"}, Correct answer: HyperText Markup Language)</li>`;
       }
 
       const q5Checks = document.querySelectorAll("input[name='q5']:checked");
       const selected = Array.from(q5Checks).map(cb => cb.value);
       if (selected.length === correctAnswers.q5.length && selected.every(val => correctAnswers.q5.includes(val))) {
         score++;
-        feedback += "<li>Question 5: Correct (You selected all valid HTML roles)</li>";
+        feedback += "<li class='correct'>Question 5: Correct (You selected all valid HTML roles)</li>";
       } else {
-        feedback += "<li>Question 5: Incorrect (Some choices were invalid or missing. Correct answers: Structuring, Multimedia, Links)</li>";
+        feedback += "<li class='incorrect'>Question 5: Incorrect (Some choices were invalid or missing. Correct answers: Structuring, Multimedia, Links)</li>";
       }
 
       feedback += `</ul><p>Total Score: ${score} / ${total}</p>`;
