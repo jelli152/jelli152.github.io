@@ -1,80 +1,136 @@
-/* Global Styles */
+/* Base Styles - Desktop First */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-/* Header Styles */
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
+header, nav, main, footer {
+  padding: 20px;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #444;
-}
-
-nav ul li {
-    margin: 0 15px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
-nav ul li a:hover {
-    color: #f4b400;
-}
-
-/* Main Content */
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-h1, h2, h3 {
-    color: #222;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    margin-top: 20px;
-}
-
-/* Utility Classes */
 .container {
-    display: flex;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.col {
+  flex: 1;
+  min-width: 300px;
+}
+
+button, input[type="submit"], input[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+form input, form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media Queries */
+
+/* Tablets (481px to 768px) */
+@media (max-width: 768px) {
+  nav ul {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+  }
+
+  .row {
+    flex-direction: column;
+  }
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-    nav ul li {
-        margin-bottom: 10px;
-    }
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+  header, nav, main, footer {
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul li a {
+    font-size: 18px;
+  }
+
+  button, input[type="submit"], input[type="button"] {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  form input, form textarea {
+    font-size: 16px;
+  }
 }
+
+/* Small tweaks for super small screens (under 360px) */
+@media (max-width: 360px) {
+  nav ul li a {
+    font-size: 16px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5em;
+  }
+
+  button, input[type="submit"], input[type="button"] {
+    font-size: 16px;
+  }
+}
+
+/* Additional mobile-friendly tweaks */
+form {
+  padding: 10px;
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+/* End of CSS */
